@@ -70,10 +70,14 @@ RUN ARCH=${TARGETARCH:-$(case "$(uname -m)" in \
 
 # Your env at here
 ADD environment.yml .
-RUN ~/miniconda3/bin/conda env create -y -f  environment.yml && ~/miniconda3/bin/conda activate nex
+RUN ~/miniconda3/bin/conda env create -y -f  environment.yml 
+RUN  eval "$($HOME/miniconda3/bin/conda shell.bash hook)" && conda init && conda activate nex
 
 # Set PYTHONUNBUFFERED=1 to have Python print to stdout/stderr immediately
 ENV PYTHONUNBUFFERED=1
 
 
+# RUN $HOME/.local/bin/uv venv ~/nex-runtime --seed --python=3.8 && \
+#     source ~/nex-runtime/bin/activate && \
+#     $HOME/.local/bin/uv pip install torch==1.8.0 torchvision==0.9.0 tensorboard==2.4.1  tqdm==4.59.0  lpips==0.1.3 opencv-python==4.1.2.30   cuda-toolkit==10.2 ffmpeg==4.2.2 numpy==1.18.1 pandas==1.0.3 scipy==1.4.1 scikit-image==0.16.2 imageio==2.9.0
 
