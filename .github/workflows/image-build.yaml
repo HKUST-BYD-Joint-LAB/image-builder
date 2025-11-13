@@ -63,6 +63,6 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:${{ github.event.inputs.image-tag }}
             ${{ env.IMAGE_NAME }}:latest
-            ${{ secrets.ALIYUN_REGISTRY }}/${{ secrets.ALIYUN_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.image-tag }}
+            ${{ secrets.ALIYUN_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.image-tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
