@@ -61,10 +61,8 @@ jobs:
           file: ${{ github.event.inputs.dockerfile-path }}/Dockerfile
           push: true
           tags: |
-            # 为 Docker Hub 生成标签
             ${{ env.IMAGE_NAME }}:${{ github.event.inputs.image-tag }}
             ${{ env.IMAGE_NAME }}:latest
-            # 为阿里云生成标签 (格式: registry.cn-地区.aliyuncs.com/命名空间/仓库名:标签)
             ${{ secrets.ALIYUN_REGISTRY }}/${{ secrets.ALIYUN_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.image-tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
