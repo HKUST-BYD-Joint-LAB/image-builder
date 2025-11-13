@@ -1,6 +1,6 @@
 # We use the cuda runtime image instead of devel image to reduce size (1.3GB vs 3.6GB)
-FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu20.04
-
+# FROM nvidia/cuda:12.1.0-cudnn-devel-ubuntu20.04
+FROM nvidia/cuda:12.1.1-runtime-ubuntu20.04
 # Detect architecture using ARG with default value
 ARG TARGETARCH
 ARG DEBIAN_FRONTEND=noninteractive
@@ -68,11 +68,12 @@ RUN ARCH=${TARGETARCH:-$(case "$(uname -m)" in \
     mv kubectl $HOME/.local/bin/ && \
     echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
 
+# Your env at here
+ADD environment.yml .
+RUN ~/miniconda3/bin/conda env create -y -f  environment.yml && ~/miniconda3/bin/cond actiavate nex
+
 # Set PYTHONUNBUFFERED=1 to have Python print to stdout/stderr immediately
 ENV PYTHONUNBUFFERED=1
 
-# ADD environment .
 
-RUN $HOME/.local/bin/uv venv ~/nex-runtime --seed --python=3.8 && \
-    source ~/skypilot-runtime/bin/activate && \
-    $HOME/.local/bin/uv pip install torch==1.8.0 torchvision==0.9.0 tensorboard==2.4.1  tqdm==4.59.0  lpips==0.1.3 opencv-python==4.1.2.30   cudatoolkit=10.2 ffmpeg=4.2.2 numpy=1.18.1 pandas=1.0.3 scipy=1.4.1 scikit-image=0.16.2 imageio==2.9.0
+
