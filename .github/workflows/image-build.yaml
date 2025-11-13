@@ -22,7 +22,7 @@ on:
 
 env:
   # 设置镜像名称，建议使用小写。格式为：用户名/仓库名
-  IMAGE_NAME: "your-username/your-repo"
+  IMAGE_NAME: "hkustbydlab/autobuilder"
 
 jobs:
   build-and-push:
