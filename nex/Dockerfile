@@ -70,7 +70,7 @@ RUN ARCH=${TARGETARCH:-$(case "$(uname -m)" in \
 
 # Your env at here
 ADD environment.yml .
-RUN ~/miniconda3/bin/conda env create -y -f  environment.yml && ~/miniconda3/bin/conda actiavate nex
+RUN ~/miniconda3/bin/conda env create -y -f  environment.yml && ~/miniconda3/bin/conda activate nex
 
 # Set PYTHONUNBUFFERED=1 to have Python print to stdout/stderr immediately
 ENV PYTHONUNBUFFERED=1
