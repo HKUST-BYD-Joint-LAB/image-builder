@@ -71,7 +71,7 @@ RUN ARCH=${TARGETARCH:-$(case "$(uname -m)" in \
 # Set PYTHONUNBUFFERED=1 to have Python print to stdout/stderr immediately
 ENV PYTHONUNBUFFERED=1
 
-ADD environment .
+# ADD environment .
 
 RUN $HOME/.local/bin/uv venv ~/nex-runtime --seed --python=3.8 && \
     source ~/skypilot-runtime/bin/activate && \
